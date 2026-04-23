@@ -1,0 +1,9 @@
+div {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  width: 100%;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+}

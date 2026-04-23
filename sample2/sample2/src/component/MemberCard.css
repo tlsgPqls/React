@@ -1,0 +1,28 @@
+.member-card {
+  margin: 0.8rem;
+  padding: 0.5rem;
+  width: 10rem;
+  min-height: 15rem;
+  text-align: center;
+
+  background-color: #ebebeb;
+  border-radius: 1rem;
+  box-shadow: 0.25rem 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+.photo {
+  width: 150px;
+  height: 150px;
+  object-position: top;
+  border: 4px solid white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.nick {
+  padding: 0;
+  margin: 2rem;
+}
+.team {
+  padding: 0;
+  margin: 0;
+  color: violet;
+  font-weight: 100;
+}
