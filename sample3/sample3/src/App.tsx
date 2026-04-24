@@ -1,3 +1,4 @@
+import JOJO from "./component/navigate.tsx";
 import type { Member } from "./component/member.ts";
 import MemberCard from "./component/MemberCard.tsx";
 import "./App.css";
@@ -12,11 +13,12 @@ const members: Member[] = [
 function App() {
   return (
     <>
-      <MemberCard member={members[0]}></MemberCard>
+      {/* <MemberCard member={members[0]}></MemberCard>
       <MemberCard member={members[1]}></MemberCard>
       <MemberCard member={members[2]}></MemberCard>
       <MemberCard member={members[3]}></MemberCard>
-      <MemberCard member={members[4]}></MemberCard>
+      <MemberCard member={members[4]}></MemberCard> */}
+      <JOJO members={members} />
     </>
   );
 }
