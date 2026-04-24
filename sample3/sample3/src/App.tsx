@@ -1,7 +1,8 @@
 import JOJO from "./component/navigate.tsx";
 import type { Member } from "./component/member.ts";
 import MemberCard from "./component/MemberCard.tsx";
-import "./App.css";
+import React from "react";
+import "./component/Jotaro.css";
 const members: Member[] = [
   { image: "image/jotaro.png", nick: "jotaro" },
   { image: "image/jotaro1.png", nick: "jotaro1" },
@@ -18,7 +19,15 @@ function App() {
       <MemberCard member={members[2]}></MemberCard>
       <MemberCard member={members[3]}></MemberCard>
       <MemberCard member={members[4]}></MemberCard> */}
-      <JOJO members={members} />
+      {/* <JOJO members={members} /> */}
+      <div>
+        {members.map((member) => (
+          <React.Fragment key={member.nick}>
+            <MemberCard member={member}></MemberCard>
+          </React.Fragment>
+        ))}
+      </div>{" "}
+      /* membercard 복사 붙여넣기 할 필요가 없음 */
     </>
   );
 }
