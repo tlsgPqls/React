@@ -19,15 +19,14 @@ function App() {
       <MemberCard member={members[2]}></MemberCard>
       <MemberCard member={members[3]}></MemberCard>
       <MemberCard member={members[4]}></MemberCard> */}
-      {/* <JOJO members={members} /> */}
-      <div>
+      {<JOJO members={members} />}
+      {/* <div>
         {members.map((member) => (
           <React.Fragment key={member.nick}>
             <MemberCard member={member}></MemberCard>
           </React.Fragment>
         ))}
-      </div>{" "}
-      /* membercard 복사 붙여넣기 할 필요가 없음 */
+      </div>{" "} */}
     </>
   );
 }
