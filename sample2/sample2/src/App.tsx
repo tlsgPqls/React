@@ -1,5 +1,7 @@
 import type { Member } from "./component/member.ts";
+import Render from "./component/Render.tsx";
 import MemberCard from "./component/MemberCard.tsx";
+import Event from "./component/Event.tsx";
 import Library from "./component/Library";
 import Book from "./component/book";
 import "./App.css";
@@ -27,9 +29,15 @@ const members: Member[] = [
 function App() {
   return (
     <>
-      <MemberCard member={members[0]}></MemberCard>
+      {/* <MemberCard member={members[0]}></MemberCard>
       <MemberCard member={members[1]}></MemberCard>
       <MemberCard member={members[2]}></MemberCard>
+      <Event type="date" />
+      <Event type="time" /> */}
+      <div className="App">
+        {/* 가져온 컴포넌트를 사용합니다 */}
+        <Render />
+      </div>
     </>
   );
 }
