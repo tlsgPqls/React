@@ -6,7 +6,7 @@ import "./App.css";
 import Counter from "./component/Counter";
 import ClassCounter from "./component/propp";
 import LiveInput from "./component/propp2";
-import ParentComponent from "./component/parent";
+// import ParentComponent from "./component/parent";
 import StateParent from "./component/parent1";
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
       {/* <Counter init={1} />
       <ClassCounter init={1} />
       <LiveInput /> */}
-      <ParentComponent />
+      {/* <ParentComponent /> */}
       <StateParent />
     </>
   );
