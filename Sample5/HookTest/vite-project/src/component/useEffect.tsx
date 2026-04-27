@@ -72,3 +72,18 @@ export function Counter() {
   }, [count]); // 의존성 배열에 있는 속성이 바뀔 때마다 실행
   return <button onClick={() => setCount(count + 1)}>{count}</button>;
 }
+export function Test() {
+  const [time, setTime] = useState<number>(0);
+  useEffect(() => {
+    console.log("타이머 시작");
+    const id = setInterval(() => {
+      setTime((t) => t + 1);
+    }, 1000);
+    //cleanup
+    return () => {
+      console.log("타이머 정리");
+      clearInterval(id);
+    };
+  }, []);
+  return <h1>{time}초</h1>;
+}

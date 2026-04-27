@@ -8,6 +8,7 @@ import ExUseEffect, {
   Counter,
   UserList,
   UserList1,
+  Test,
 } from "./component/useEffect";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <UserList />
         <UserList1 />
         <Counter />
+        <Test />
       </div>
     </>
   );
