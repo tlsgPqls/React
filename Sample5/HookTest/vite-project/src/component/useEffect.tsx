@@ -84,6 +84,50 @@ export function Test() {
       console.log("타이머 정리");
       clearInterval(id);
     };
+  }, [time]);
+  return <h1>{time}초</h1>;
+}
+export function Test3() {
+  const [time, setTime] = useState<number>(0);
+  useEffect(() => {
+    console.log("타이머 시작");
+    const id = setInterval(() => {
+      setTime((t) => t + 1);
+    }, 1000);
+    //cleanup
+  }, [time]);
+  return <h1>{time}초</h1>;
+}
+export function Test4() {
+  const [time, setTime] = useState<number>(0);
+  useEffect(() => {
+    console.log("타이머 시작");
+    const id = setInterval(() => {
+      setTime((t) => t + 1);
+    }, 1000);
+    //cleanup
+    return () => {
+      console.log("타이머 정리");
+      clearInterval(id);
+    };
   }, []);
   return <h1>{time}초</h1>;
+}
+export function Test2() {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    const handleClick = () => {
+      setCount((c) => c + 1);
+    };
+    window.addEventListener("click", handleClick);
+    return () => {
+      window.removeEventListener("click", handleClick);
+    };
+  }, []);
+  return (
+    <>
+      <h1>{count}</h1>
+      <button onClick={() => setCount(count + 1)}>{count}</button>
+    </>
+  );
 }
