@@ -8,13 +8,13 @@ import ExUseEffect, {
   Counter,
   UserList,
   UserList1,
-  Test,
   Test2,
   Test3,
   Test4,
 } from "./component/useEffect";
 import MovieList from "./component/Movie";
 import MovieInfo from "./component2/Movie";
+import Test from "./component/useFetch2.tsx";
 import ExUseMemo from "./component/Memo";
 import UserMemoTest from "./component/Memo2";
 import ParentComponent from "./component/Callback";
@@ -32,7 +32,8 @@ function App() {
         <Counter />
         <Test /> */}
         {/* <MovieList /> */}
-        {/* <MovieInfo /> */}
+        <MovieInfo />
+        <Test />
         {/* <Test /> */}
         {/* <Test2 />
         <Test3 />
