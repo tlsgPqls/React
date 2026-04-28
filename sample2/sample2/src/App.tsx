@@ -4,7 +4,7 @@ import MemberCard from "./component/MemberCard.tsx";
 import Event from "./component/Event.tsx";
 import Library from "./component/Library";
 import Book from "./component/book";
-import Test from "./component/useRef.tsx";
+import Test from "./component/useFetch2.tsx";
 import Counter from "./component/useReducer.tsx";
 import "./App.css";
 import Login from "./component/useReducer1.tsx";
@@ -44,7 +44,8 @@ function App() {
         {/* <Test /> */}
         {/* <Counter /> */}
         {/* <Login /> */}
-        <DarkOrLight />
+        {/* <DarkOrLight /> */}
+        <Test />
       </div>
     </>
   );
