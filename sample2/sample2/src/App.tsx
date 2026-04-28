@@ -4,7 +4,11 @@ import MemberCard from "./component/MemberCard.tsx";
 import Event from "./component/Event.tsx";
 import Library from "./component/Library";
 import Book from "./component/book";
+import Test from "./component/useRef.tsx";
+import Counter from "./component/useReducer.tsx";
 import "./App.css";
+import Login from "./component/useReducer1.tsx";
+import DarkOrLight from "./component/Provider.tsx";
 const members: Member[] = [
   {
     image:
@@ -36,7 +40,11 @@ function App() {
       <Event type="time" /> */}
       <div className="App">
         {/* 가져온 컴포넌트를 사용합니다 */}
-        <Render />
+        {/* <Render /> */}
+        {/* <Test /> */}
+        {/* <Counter /> */}
+        {/* <Login /> */}
+        <DarkOrLight />
       </div>
     </>
   );
