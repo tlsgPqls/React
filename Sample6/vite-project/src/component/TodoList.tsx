@@ -5,8 +5,10 @@ import { type Todo } from "../App";
 import { useState, type ChangeEvent } from "react";
 interface TodoListProps {
   todos: Todo[];
+  onUpdate: (targetId: number) => void;
+  onDelete: (targetId: number) => void;
 }
-function TodoList({ todos }: TodoListProps) {
+function TodoList({ todos, onUpdate, onDelete }: TodoListProps) {
   const [search, setSearch] = useState("");
 
   const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +33,12 @@ function TodoList({ todos }: TodoListProps) {
       />
       <div>
         {getSearchResult().map((todo) => (
-          <TodoItem todo={todo} key={todo.id} />
+          <TodoItem
+            todo={todo}
+            key={todo.id}
+            onUpdate={onUpdate}
+            onDelete={onDelete}
+          />
         ))}
       </div>
     </div>

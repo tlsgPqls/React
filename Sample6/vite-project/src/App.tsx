@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useReducer, useRef, useState } from "react";
 import Header from "./component/Header";
 import TodoEditor from "./component/TodoEditor";
 import TodoList from "./component/TodoList";
@@ -29,8 +29,31 @@ export interface Todo {
   content: string;
   createDate: number;
 }
+
+type Action =
+  | { type: "CREATE"; newItem: Todo }
+  | { type: "UPDATE"; targetId: number }
+  | { type: "DELETE"; targetId: number };
+function reducer(todos: Todo[], action: Action) {
+  switch (action.type) {
+    case "CREATE": {
+      return [action.newItem, ...todos];
+    }
+    case "UPDATE": {
+      return todos.map((todo) =>
+        todo.id === action.targetId ? { ...todo, isDone: !todo.isDone } : todo,
+      );
+    }
+    case "DELETE": {
+      return todos.filter((todo) => todo.id !== action.targetId);
+    }
+    default:
+      return todos;
+  }
+}
 function App() {
-  const [todos, setTodos] = useState<Todo[]>(mockTodos);
+  // const [todos, setTodos] = useState<Todo[]>(mockTodos);
+  const [todos, dispatch] = useReducer(reducer, mockTodos);
   const idRef = useRef(3);
 
   const onCreate = (content: string) => {
@@ -40,8 +63,22 @@ function App() {
       isDone: false,
       createDate: new Date().getTime(),
     };
-    setTodos([newItem, ...todos]);
+    // setTodos([newItem, ...todos]);
+    dispatch({ type: "CREATE", newItem });
     idRef.current += 1;
+  };
+
+  const onUpdate = (targetId: number) => {
+    // setTodos(
+    //   todos.map((todo) =>
+    //     todo.id === targetId ? { ...todo, isDone: !todo.isDone } : todo,
+    //   ),
+    // );
+    dispatch({ type: "UPDATE", targetId });
+  };
+  const onDelete = (targetId: number) => {
+    // setTodos(todos.filter((todo) => todo.id !== targetId));
+    dispatch({ type: "DELETE", targetId });
   };
 
   return (
@@ -49,7 +86,7 @@ function App() {
       <div className="App">
         <Header />
         <TodoEditor onCreate={onCreate} />
-        <TodoList todos={todos} />
+        <TodoList todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
       </div>
     </>
   );

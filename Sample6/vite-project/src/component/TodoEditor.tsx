@@ -19,6 +19,7 @@ function TodoEditor({ onCreate }: TodoEditorProps) {
   };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.nativeEvent.isComposing) return;
     if (e.key === "Enter") {
       onSubmit();
     }
