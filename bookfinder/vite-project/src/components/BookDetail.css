@@ -1,0 +1,35 @@
+.book-detail {
+  background-color: beige;
+  flex: 1;
+  padding: 20px;
+  border-left: 1px solid #ddd;
+  overflow-y: auto; /* 상세 정보가 길어질 경우 스크롤 */
+}
+
+.book-detail img {
+  max-width: 200px; /* 원래 크기 */
+  margin-top: 20px;
+}
+
+.book-detail h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.book-detail p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.book-detail a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.book-detail a:hover {
+  text-decoration: underline;
+}
+
+.book-detail .description {
+  white-space: pre-wrap; /* 줄바꿈을 유지하면서 자동으로 텍스트가 줄바꿈되도록 처리 */
+}

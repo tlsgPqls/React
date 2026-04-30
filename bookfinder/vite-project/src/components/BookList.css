@@ -1,0 +1,49 @@
+.book-list {
+  flex: 1;
+  overflow-y: auto; /* 세로 스크롤 활성화 */
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* 카드들 사이에 간격 추가 */
+}
+
+.book-item {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px; /* 카드 모서리를 둥글게 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 효과 */
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.book-item:hover {
+  transform: translateY(-5px); /* 호버 시 약간 떠오르는 애니메이션 */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 강화 */
+}
+
+.book-item img {
+  width: 50px; /* 썸네일 크기 50px로 고정 */
+  height: auto;
+  margin-right: 20px; /* 이미지와 텍스트 사이 간격 */
+}
+
+.book-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-info h3 {
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.book-info p {
+  color: #555;
+  font-size: 14px;
+}

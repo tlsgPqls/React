@@ -1,0 +1,8 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* body 전체에 스크롤이 생기지 않도록 */
+  user-select: none;
+}

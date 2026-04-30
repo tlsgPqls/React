@@ -1,0 +1,43 @@
+.search-bar {
+  display: flex;
+  justify-content: center; /* 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  margin: 10px; /* 전체 영역에 10px 마진 추가 */
+}
+
+.search-bar form {
+  display: flex;
+  width: 100%;
+  max-width: 600px; /* 검색창의 최대 너비를 설정 */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 효과 */
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px 5px; /* 왼쪽 모서리만 둥글게 */
+  font-size: 16px;
+  /* outline: none; */
+  transition: all 0.3s ease;
+}
+
+.search-bar input:focus {
+  border-color: #007bff; /* 포커스 시 파란색 테두리 */
+  box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5); /* 포커스 시 약간의 그림자 효과 */
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  background-color: #007bff; /* 버튼 색상: 파란색 */
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0; /* 오른쪽 모서리만 둥글게 */
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+  background-color: #0056b3; /* 호버 시 더 어두운 파란색 */
+}
