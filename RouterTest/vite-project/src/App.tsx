@@ -1,5 +1,12 @@
 import "./App.css";
-import { Header, Main, Product, NotFound } from "./components";
+import App1, {
+  Header,
+  Main,
+  Product,
+  NotFound,
+  StateForm,
+  StateFormUC,
+} from "./components";
 import {
   BrowserRouter,
   Routes,
@@ -8,13 +15,14 @@ import {
   Outlet,
 } from "react-router-dom";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import CardList from "./Node";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
       { index: true, element: <Main /> },
-      { path: "product/*", element: <Product /> },
+      { path: "product/:id", element: <Product /> },
     ],
   },
   {
@@ -58,6 +66,10 @@ function App() {
         </header>
         <Header />
       </BrowserRouter>
+      <App1 />
+      <StateForm />
+      <StateFormUC />
+      <CardList />
     </div>
   );
 }
