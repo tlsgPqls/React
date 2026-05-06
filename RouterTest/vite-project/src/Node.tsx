@@ -30,10 +30,8 @@ export default function CardList() {
         <h2>Card 3</h2>
         <img src="https://placehold.co/100" alt="Placeholder" />
         <p></p>
-        <div>
-          <button>매도</button>
-          <button>매수</button>
-        </div>
+        <button>매도</button>
+        <button>매수</button>
       </Card>
     </div>
   );

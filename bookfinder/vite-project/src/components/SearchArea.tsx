@@ -11,7 +11,7 @@ function SearchArea() {
   const [page, setPage] = useState<number>(1);
   // const [isEnd, setIsEnd] = useState<boolean>(false);
   const url = "https://dapi.kakao.com/v3/search/book";
-  const apikey = "";
+  const apikey = ""; //*
   const { documents, isEnd } = useFetch<Book>(query, page, url, apikey);
 
   const resetPage = () => {

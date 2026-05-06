@@ -120,8 +120,8 @@ export function StateFormUC() {
   const age = useRef(null);
   // 요소(참조)를 통해 입력값 준비하기
   const show = () => {
-    console.log(`안녕하세요, ${name.current.value}
-（${age.current.value}세） 님！`);
+    //     console.log(`안녕하세요, ${name.current.value}
+    // （${age.current.value}세） 님！`);
   };
   return (
     <form>
