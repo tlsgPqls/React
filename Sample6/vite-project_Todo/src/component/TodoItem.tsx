@@ -1,15 +1,17 @@
 import "./TodoItem.css";
 import { type Todo } from "../App";
+import React from "react";
+import { TodoDispatchContext } from "../TodoContext";
+import { useContext } from "react";
 interface TodoItemProps {
   todo: Todo;
-  onUpdate: (targetId: number) => void;
-  onDelete: (targetId: number) => void;
 }
-function TodoItem({ todo, onUpdate, onDelete }: TodoItemProps) {
+function TodoItem({ todo }: TodoItemProps) {
+  const { onUpdate, onDelete } = useContext(TodoDispatchContext);
+  console.log(`${todo.id} TodoItems 업데이트`);
   const onChangeCheckbox = () => {
     onUpdate(todo.id);
   };
-
   const onClickDelete = () => {
     onDelete(todo.id);
   };
@@ -32,4 +34,4 @@ function TodoItem({ todo, onUpdate, onDelete }: TodoItemProps) {
     </div>
   );
 }
-export default TodoItem;
+export default React.memo(TodoItem);
