@@ -1,3 +1,7 @@
 .Header h1 {
   color: blue;
 }
+.date-weather {
+  display: flex;
+  gap: 2rem;
+}
