@@ -1,3 +1,6 @@
+import { fetchSales } from "@/app/util/fetch-sales";
+import { InferGetServerSidePropsType } from "next";
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div>
