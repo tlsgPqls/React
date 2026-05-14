@@ -8,14 +8,19 @@ export default async function Page({
   searchParams: Promise<{ q: string }>;
 }) {
   const { q } = await searchParams;
-  let url = `${ENV.API_URL}/${q}`;
+  console.log(q);
+  const response = await fetch(`https://api.jikan.moe/v4/anime`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cache: "no-store",
+  });
   // if (q) {
   //   url += `?q=${q}`;
   // }
-  const response = await fetch(url);
-  console.log(url);
   const data = await response.json();
-  const sales: SaleData[] = data.documents;
+  const sales: SaleData[] = data.results;
   return (
     <div>
       <h3>검색페이지</h3>

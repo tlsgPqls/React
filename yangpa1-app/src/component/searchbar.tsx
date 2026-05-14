@@ -23,6 +23,7 @@ export default function Searchbar() {
     <div className={style.searchbar_container}>
       <input
         type="text"
+        placeholder="영화 이름을 입력하세요"
         onChange={onChangeSearch}
         onKeyDown={onKeyDown}
         value={search}

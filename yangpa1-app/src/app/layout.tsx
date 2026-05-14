@@ -11,12 +11,12 @@ export default function RootLayout({
         <div className={style.container}>
           <header>
             <Link href="/" className={style.title}>
-              🙈양파마켓{" "}
+              🗺️ 애니 포스터 특전 수령 사이트{" "}
             </Link>
           </header>
 
           <main>{children}</main>
-          <footer>&copy; 2026 양파 마켓 All right reserved</footer>
+          <footer>&copy; 2026 anime poster market All right reserved</footer>
         </div>
       </body>
     </html>
