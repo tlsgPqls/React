@@ -4,27 +4,30 @@ import style from "./sale-item.module.css";
 import Link from "next/link";
 import { ENV } from "@/env";
 export default function SaleItem({
-  id,
-  productName,
-  description,
-  price,
-  photo,
+  mal_id,
+  url,
+  title,
+  type,
+  duration,
+  score,
+  background,
+  images,
 }: SaleData) {
-  const imgUrl = `${ENV.IMAGE_URL}/${photo}`;
+  const imgUrl = images?.jpg?.image_url || "/placeholder.png";
   return (
-    <Link href={`/sale/${id}`}>
+    <Link href={`/sale/${mal_id}`}>
       <div className={style.container}>
         <Image
           src={imgUrl}
-          alt=""
+          alt="image"
           width={100}
           height={100}
           className={style.image}
         />
         <div>
-          <div className={style.title}>상품명 {productName}</div>
-          <div className={style.description}>설명 {description}</div>
-          <div className={style.price}>가격: {price.toLocaleString()} 원</div>
+          <div className={style.title}>상품명 {title}</div>
+          <div className={style.description}>설명 {background}</div>
+          <div className={style.description}>연령가 {score}</div>
         </div>
       </div>
     </Link>

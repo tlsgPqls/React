@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "styangpa.blob.core.windows.net",
+        hostname: "myanimelist.net",
       },
     ],
   },

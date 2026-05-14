@@ -1,7 +1,14 @@
 export default interface SaleData {
-  id: number;
-  productName: string;
-  description: string;
-  price: number;
-  photo: string;
+  mal_id: number;
+  url: string;
+  title: string;
+  type: string;
+  duration: string;
+  score: number;
+  background: string;
+  images: {
+    jpg: {
+      image_url: string;
+    };
+  };
 }
