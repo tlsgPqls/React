@@ -1,0 +1,229 @@
+.page_container {
+  width: 100%;
+}
+
+.page_header {
+  margin-bottom: 24px;
+}
+
+.page_title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #1e2022;
+  margin: 0 0 6px 0;
+}
+
+.page_subtitle {
+  font-size: 0.9rem;
+  color: #8a9299;
+  margin: 0;
+}
+
+/* 촘촘한 사진 카드 격자 구조 연동 (130px 베이스) */
+.anime_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+.anime_card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #eef0f2;
+  position: relative;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.anime_card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.image_wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 125%;
+  background-color: #f5f6f7;
+}
+
+.anime_image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 🏅 랭킹 순위 전용 대형 배지 디자인 */
+.rank_badge {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background-color: rgba(30, 32, 34, 0.85);
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 3px 6px;
+  border-radius: 4px;
+  z-index: 5;
+}
+
+/* 상위 3개 명작 특별 컬러 하이라이트 */
+.rank_1 {
+  background-color: #ffb703;
+  color: #000;
+} /* 1위 골드 */
+.rank_2 {
+  background-color: #b5c2ca;
+  color: #000;
+} /* 2위 실버 */
+.rank_3 {
+  background-color: #ca6702;
+  color: #fff;
+} /* 3위 브론즈 */
+
+.anime_info {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 4px;
+}
+
+.anime_name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #2d3135;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 제작사 폰트 셋팅 */
+.studio_text {
+  font-size: 0.7rem;
+  color: #ff4757;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meta_info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+  color: #8a9299;
+  margin-top: auto;
+}
+
+.score_text {
+  font-weight: 700;
+  color: #ffb703;
+}
+
+.loading_box {
+  padding: 80px 0;
+  text-align: center;
+  color: #8a9299;
+  font-size: 0.9rem;
+}
+
+/* 모달 레이어 팝업 공통 상속 */
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal_content {
+  background-color: #ffffff;
+  width: 90%;
+  max-width: 650px;
+  border-radius: 16px;
+  position: relative;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+}
+.modal_close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #8a9299;
+  cursor: pointer;
+  z-index: 10;
+}
+.modal_body {
+  padding: 30px;
+  display: flex;
+  gap: 24px;
+}
+.modal_left {
+  width: 180px;
+  min-width: 180px;
+}
+.modal_left img {
+  width: 100%;
+  border-radius: 8px;
+}
+.modal_right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.modal_type_badge {
+  align-self: flex-start;
+  background-color: #ffeef0;
+  color: #ff4757;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+.modal_anime_title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #1e2022;
+  margin: 0 0 12px 0;
+}
+.modal_meta_row {
+  display: flex;
+  gap: 16px;
+  font-size: 0.85rem;
+  color: #4b5054;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f1f3f5;
+  margin-bottom: 12px;
+}
+.modal_synopsis h4 {
+  margin: 0 0 6px 0;
+  font-size: 0.9rem;
+  color: #1e2022;
+}
+.modal_synopsis p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #5f656b;
+  line-height: 1.5;
+}

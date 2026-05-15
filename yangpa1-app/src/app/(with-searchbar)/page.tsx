@@ -21,7 +21,7 @@ export default async function Home() {
 
   return (
     <div className={style.container}>
-      <h3>방영중인 영화</h3>
+      <h3>애니리스트</h3>
       <div className={style.grid_layout}>
         {animeList.map((anime: any) => {
           // Jikan API 원본 데이터를 SaleData 타입 규격에 맞춰 안전하게 매핑
@@ -38,6 +38,8 @@ export default async function Home() {
             type: anime.type || "TVA",
             duration: anime.duration || "알 수 없음",
             score: anime.score || 0,
+            favorites: anime.like || 0,
+            popularity: anime.popularity || 0,
             background: anime.background || "",
           };
 

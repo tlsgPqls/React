@@ -1,0 +1,264 @@
+.page_container {
+  width: 100%;
+}
+
+.page_header {
+  margin-bottom: 24px;
+}
+
+.page_title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #1e2022;
+  margin: 0 0 6px 0;
+}
+
+.page_subtitle {
+  font-size: 0.9rem;
+  color: #8a9299;
+  margin: 0;
+}
+
+/* 📅 분기 선택 가로 탭 바 */
+.season_tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  background-color: #f8f9fa;
+  padding: 6px;
+  border-radius: 12px;
+  border: 1px solid #eef0f2;
+}
+
+.tab_button {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 0;
+  border-radius: 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #5f656b;
+}
+
+.tab_icon {
+  font-size: 1.2rem;
+}
+
+.tab_name {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.tab_button:hover {
+  background-color: #ffffff;
+  color: #ff4757;
+}
+
+/* 활성화된 분기 버튼 스타일 */
+.tab_button.tab_active {
+  background-color: #ffffff;
+  color: #ff4757;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.list_meta {
+  font-size: 0.85rem;
+  color: #8a9299;
+  margin-bottom: 16px;
+}
+
+.count_text {
+  font-weight: 700;
+  color: #ff4757;
+}
+
+/* 촘촘한 사진 카드 격자 구조 연동 (130px 베이스) */
+.anime_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+.anime_card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #eef0f2;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.anime_card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.image_wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 125%;
+  background-color: #f5f6f7;
+}
+
+.anime_image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.score_badge {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background-color: rgba(30, 32, 34, 0.85);
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+/* 평점 정보가 아직 없는 신작용 배지 */
+.badge_upcoming {
+  background-color: #ff4757;
+}
+
+.anime_info {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 4px;
+}
+
+.anime_name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #2d3135;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meta_info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: #8a9299;
+}
+
+.airing_status {
+  font-weight: 600;
+}
+
+/* 로딩 애니메이션 및 안내 창 */
+.loading_box,
+.empty_box {
+  padding: 80px 0;
+  text-align: center;
+  color: #8a9299;
+  font-size: 0.9rem;
+}
+
+/* 팝업 모달 공통 스타일 (이전과 동일 처리) */
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal_content {
+  background-color: #ffffff;
+  width: 90%;
+  max-width: 650px;
+  border-radius: 16px;
+  position: relative;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+}
+.modal_close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #8a9299;
+  cursor: pointer;
+  z-index: 10;
+}
+.modal_body {
+  padding: 30px;
+  display: flex;
+  gap: 24px;
+}
+.modal_left {
+  width: 180px;
+  min-width: 180px;
+}
+.modal_left img {
+  width: 100%;
+  border-radius: 8px;
+}
+.modal_right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.modal_type_badge {
+  align-self: flex-start;
+  background-color: #ffeef0;
+  color: #ff4757;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+.modal_anime_title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #1e2022;
+  margin: 0 0 12px 0;
+}
+.modal_meta_row {
+  display: flex;
+  gap: 16px;
+  font-size: 0.85rem;
+  color: #4b5054;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f1f3f5;
+  margin-bottom: 12px;
+}
+.modal_synopsis h4 {
+  margin: 0 0 6px 0;
+  font-size: 0.9rem;
+  color: #1e2022;
+}
+.modal_synopsis p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #5f656b;
+  line-height: 1.5;
+}

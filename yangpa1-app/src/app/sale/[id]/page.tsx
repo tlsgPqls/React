@@ -8,62 +8,70 @@ interface PageProps {
 }
 
 export default async function Page({ params }: PageProps) {
-  // 1. Next.js 15 규칙: 비동기로 URL 파라미터의 id 추출 (mal_id)
+  // 1. 주소창에서 id(예: '20')를 받아옵니다.
   const { id } = await params;
-
-  let animeDetail: any = null;
+  const targetId = Number(id); // 안전한 비교를 위해 숫자형으로 변환
+  const searchTitle = decodeURIComponent(id).toLowerCase();
+  let animeList: any[] = [];
 
   try {
-    // 2. Jikan API의 특정 ID 단건 조회 주소 호출
-    const response = await fetch(`https://api.jikan.moe/v4/anime/`, {
-      cache: "no-store", // 실시간 데이터 반영
+    // 2. 검색 쿼리로 호출 (jsonResult.data 배열이 반환됨)
+    const response = await fetch(`https://api.jikan.moe/v4/anime?`, {
+      cache: "no-store",
     });
 
     if (!response.ok) {
-      throw new Error("애니메이션 상세 정보를 가져오는데 실패했습니다.");
+      throw new Error("애니메이션 정보를 가져오는데 실패했습니다.");
     }
 
     const jsonResult = await response.json();
-
-    // 3. 단건 조회의 결과는 배열이 아닌 'data' 단일 객체입니다.
-    animeDetail = jsonResult.data;
+    animeList = jsonResult.data || [];
   } catch (err) {
     console.error("상세페이지 에러:", err);
     return <div>오류가 발생했습니다. 다시 시도해주세요.</div>;
   }
 
-  // 데이터가 없을 때 안전장치
-  if (!animeDetail) {
-    return <div>존재하지 않거나 정보를 불러올 수 없는 애니메이션입니다.</div>;
+  // 3. 핵심 수정: item.id가 아니라 API 스펙인 item.mal_id와 정확히 비교합니다.
+  const currentAnime = animeList.find((item: any) => item.mal_id === targetId);
+
+  // 데이터 가공 및 일치 항목 미발견 시 안전장치
+  if (!currentAnime) {
+    return (
+      <div>
+        존재하지 않거나 목록에서 해당 ID({id}) 정보를 매칭할 수 없습니다.
+      </div>
+    );
   }
 
-  // 4. 앞서 정의한 Jikan API의 깊은 이미지 구조에서 주소 추출
+  // 4. 추출한 단일 객체 'currentAnime'에서 필드 분해
   const imgUrl =
-    animeDetail.images?.jpg?.large_image_url ||
-    animeDetail.images?.jpg?.image_url ||
-    "";
-
-  // 5. 화면에 뿌려줄 데이터 구조 분해 할당
-  const { title, mal_id, background, score, type, duration } = animeDetail;
+    currentAnime.images?.jpg?.large_image_url ||
+    currentAnime.images?.jpg?.image_url ||
+    null;
+  const { title, mal_id, background, score, type, duration } = currentAnime;
 
   return (
     <div className={style.container}>
-      {/* 고화질 포스터 배경 처리 */}
-      <div
-        className={style.cover_img_container}
-        style={{ backgroundImage: `url('${imgUrl}')` }}
-      >
-        <Image
-          src={imgUrl}
-          alt={title || "포스터"}
-          width={200}
-          height={300}
-          className={style.cover_img}
-          unoptimized // 외부 cdn 도메인 에러 방지
-        />
-      </div>
+      {imgUrl ? (
+        <div
+          className={style.cover_img_container}
+          style={{ backgroundImage: `url('${imgUrl}')` }}
+        >
+          <Image
+            src={imgUrl}
+            alt={title || "포스터"}
+            width={200}
+            height={300}
+            className={style.cover_img}
+            unoptimized
+          />
+        </div>
+      ) : (
+        <div className={style.no_image_container}>
+          등록된 포스터가 없습니다.
+        </div>
+      )}
 
-      {/* 정보 출력 구역 */}
       <div className={style.info_section}>
         <h1 className={style.title}>{title}</h1>
         <p className={style.meta}>고유 번호(ID): {mal_id}</p>
@@ -74,7 +82,7 @@ export default async function Page({ params }: PageProps) {
 
         <hr className={style.divider} />
 
-        <h3>줄거리 / 백그라운드</h3>
+        <h3>줄거리</h3>
         <p className={style.description}>
           {background || "등록된 상세 설명 텍스트가 없습니다."}
         </p>

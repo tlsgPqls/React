@@ -10,10 +10,13 @@ export default function SaleItem({
   type,
   duration,
   score,
+  popularity,
+  favorites,
   background,
   images,
 }: SaleData) {
   const imgUrl = images?.jpg?.image_url || "/placeholder.png";
+  const encodedTitle = encodeURIComponent(title);
   return (
     <Link href={`/sale/${mal_id}`}>
       <div className={style.container}>
@@ -25,9 +28,11 @@ export default function SaleItem({
           className={style.image}
         />
         <div>
-          <div className={style.title}>상품명 {title}</div>
-          <div className={style.description}>설명 {background}</div>
-          <div className={style.description}>연령가 {score}</div>
+          <div className={style.title}>{title}</div>
+          <div className={style.score}>평점: ⭐{score}</div>
+          <div className={style.score}>좋아요: ❤️{favorites}</div>
+          <div className={style.score}>인지도: {popularity}</div>
+          <div className={style.title}>방영시간: {duration}</div>
         </div>
       </div>
     </Link>

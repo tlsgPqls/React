@@ -1,0 +1,316 @@
+/* 상단 장르 칩 컨테이너 */
+.filter_container {
+  display: flex;
+  flex-wrap: wrap; /* 창 너비가 좁아지면 아래로 줄바꿈 처리 */
+  gap: 10px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f1f3f5;
+}
+
+/* 개별 필터 버튼 */
+.filter_chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 20px; /* 둥근 캡슐 형태 조형 */
+  border: 1px solid #e1e4e6;
+  background-color: #ffffff;
+  color: #4b5054;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter_chip:hover {
+  background-color: #f8f9fa;
+  border-color: #ff4757;
+  color: #ff4757;
+}
+
+/* 필터가 클릭되어 활성화되었을 때 스타일 (포인트 컬러 강조) */
+.filter_chip.chip_active {
+  background-color: #ff4757;
+  border-color: #ff4757;
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(255, 71, 87, 0.25);
+}
+
+/* 리스트 결과 개수 안내 */
+.list_meta {
+  font-size: 0.85rem;
+  color: #8a9299;
+  margin-bottom: 16px;
+}
+
+.count_text {
+  font-weight: 700;
+  color: #ff4757;
+}
+
+.loading_text {
+  padding: 60px 0;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #8a9299;
+}
+.anime_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px; /* 카드 사이 간격도 촘촘하게 줄임 */
+}
+
+/* 2. 카드 전체 여백 조절 */
+.anime_card {
+  background-color: #ffffff;
+  border-radius: 8px; /* 조금 더 각진 모던한 스타일 */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #eef0f2;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  cursor: pointer;
+}
+
+/* 📸 3. 사진 세로 길이 압축 (기존 140% -> 125%로 줄여 컴팩트하게 변형) */
+.image_wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 125%;
+  background-color: #f5f6f7;
+  overflow: hidden;
+}
+
+.anime_image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 4. 평점 배지 크기 축소 */
+.score_badge {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background-color: rgba(30, 32, 34, 0.85);
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+/* ✍️ 5. 하단 텍스트 정보 구역 여백 최소화 */
+.anime_info {
+  padding: 8px; /* 기존 12px -> 8px */
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 4px;
+}
+
+.anime_name {
+  font-size: 0.85rem; /* 기존 0.95rem -> 0.85rem */
+  font-weight: 600;
+  color: #2d3135;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 6. 부가 정보 텍스트 크기 축소 */
+.meta_info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem; /* 기존 0.75rem -> 0.7rem */
+  color: #8a9299;
+}
+/* 🖤 모달 뒷배경 (어두운 반투명 레이어) */
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6); /* 딤드(Dimmed) 처리 */
+  backdrop-filter: blur(4px); /* 뒷배경 흐리게 효과 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* 네비게이션 헤더보다 위에 오도록 설정 */
+}
+
+/* 🤍 중앙 흰색 팝업 박스 */
+.modal_content {
+  background-color: #ffffff;
+  width: 90%;
+  max-width: 700px;
+  height: auto;
+  max-height: 85vh; /* 화면을 넘지 않도록 최대 높이 제한 */
+  border-radius: 16px;
+  position: relative;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
+  animation: modalFadeIn 0.25s ease-out; /* 부드럽게 튀어나오는 이펙트 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* ✕ 닫기 버튼 */
+.modal_close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #8a9299;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.2s;
+}
+.modal_close:hover {
+  color: #ff4757;
+}
+
+/* 팝업 본문 내 영역 배치 (좌:포스터 / 우:정보) */
+.modal_body {
+  padding: 30px;
+  display: flex;
+  gap: 24px;
+  overflow-y: auto; /* 내용이 길어지면 내부 스크롤 생성 */
+}
+
+.modal_left {
+  width: 200px;
+  min-width: 200px;
+}
+.modal_left img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.modal_right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 서브 타이틀 및 배지 조형 */
+.modal_type_badge {
+  align-self: flex-start;
+  background-color: #ffeef0;
+  color: #ff4757;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.modal_anime_title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #1e2022;
+  margin: 0 0 4px 0;
+}
+
+.modal_jp_title {
+  font-size: 0.85rem;
+  color: #8a9299;
+  margin: 0 0 16px 0;
+}
+
+/* 평점, 화수 배치 행 */
+.modal_meta_row {
+  display: flex;
+  gap: 16px;
+  font-size: 0.85rem;
+  color: #4b5054;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f1f3f5;
+  margin-bottom: 16px;
+}
+
+/* 줄거리 스크롤 구역 */
+.modal_synopsis h4 {
+  margin: 0 0 8px 0;
+  font-size: 0.95rem;
+  color: #1e2022;
+}
+.modal_synopsis p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #5f656b;
+  line-height: 1.6;
+}
+
+/* 🎬 모달 등장 애니메이션 효과 설정 */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 모바일 화면 대응: 좌우 배치를 상하 배치로 전환 */
+@media (max-width: 600px) {
+  .modal_body {
+    flex-direction: column;
+    align-items: center;
+  }
+  .modal_left {
+    width: 150px;
+    min-width: 150px;
+  }
+}
+.controls_row {
+  display: flex;
+  margin-bottom: 16px;
+  justify-content: flex-start;
+}
+
+.select_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.select_wrapper label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #8a9299;
+  text-transform: uppercase;
+}
+
+/* ⚡ 모던 드롭다운 셀렉트 박스 */
+.year_select {
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #2d3135;
+  background-color: #ffffff;
+  border: 1px solid #e1e4e6;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: border-color 0.2s;
+}
+
+.year_select:focus {
+  border-color: #ff4757; /* 선택 시 테두리 하이라이트 */
+}

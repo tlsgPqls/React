@@ -12,6 +12,7 @@ export default function Searchbar() {
   };
   const onSubmit = () => {
     if (!search || q === search) return;
+    console.log("검색 전송 값:", search, "타입:", typeof search);
     router.push(`/search?q=${search}`);
   };
   const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -23,6 +24,7 @@ export default function Searchbar() {
     <div className={style.searchbar_container}>
       <input
         type="text"
+        placeholder="영화 이름을 입력하세요"
         onChange={onChangeSearch}
         onKeyDown={onKeyDown}
         value={search}

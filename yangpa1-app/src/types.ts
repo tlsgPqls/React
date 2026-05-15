@@ -5,6 +5,8 @@ export default interface SaleData {
   type: string;
   duration: string;
   score: number;
+  popularity: number;
+  favorites: number;
   background: string;
   images: {
     jpg: {
