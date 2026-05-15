@@ -17,7 +17,12 @@ export default async function Page({
   const response = await fetch(url);
   console.log(url);
   const data = await response.json();
-  const sales: SaleData[] = data.data;
+  const rawSales: SaleData[] = data.data || [];
+  const sales = rawSales.filter(
+    (sale, index, self) =>
+      self.findIndex((item) => item.mal_id === sale.mal_id) === index,
+  );
+  //const sales: SaleData[] = data.data;
   return (
     <div>
       <h3>검색페이지</h3>

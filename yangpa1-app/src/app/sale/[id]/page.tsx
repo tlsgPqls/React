@@ -12,11 +12,13 @@ export default async function Page({ params }: PageProps) {
   const { id } = await params;
   const targetId = Number(id); // 안전한 비교를 위해 숫자형으로 변환
   const searchTitle = decodeURIComponent(id).toLowerCase();
-  let animeList: any[] = [];
+  // let animeList: any[] = [];
+
+  let currentAnime;
 
   try {
     // 2. 검색 쿼리로 호출 (jsonResult.data 배열이 반환됨)
-    const response = await fetch(`https://api.jikan.moe/v4/anime?`, {
+    const response = await fetch(`https://api.jikan.moe/v4/anime/${id}`, {
       cache: "no-store",
     });
 
@@ -25,15 +27,15 @@ export default async function Page({ params }: PageProps) {
     }
 
     const jsonResult = await response.json();
-    animeList = jsonResult.data || [];
+    currentAnime = jsonResult.data || [];
   } catch (err) {
     console.error("상세페이지 에러:", err);
     return <div>오류가 발생했습니다. 다시 시도해주세요.</div>;
   }
 
   // 3. 핵심 수정: item.id가 아니라 API 스펙인 item.mal_id와 정확히 비교합니다.
-  const currentAnime = animeList.find((item: any) => item.mal_id === targetId);
-
+  // const currentAnime = animeList.find((item: any) => item.mal_id === targetId);
+  // console.log(animeList);
   // 데이터 가공 및 일치 항목 미발견 시 안전장치
   if (!currentAnime) {
     return (
