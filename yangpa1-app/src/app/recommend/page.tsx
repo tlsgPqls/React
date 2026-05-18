@@ -5,32 +5,30 @@ import style from "./recommend.module.css";
 
 export default function RecommendPage() {
   const [randomAnime, setRandomAnime] = useState<any | null>(null);
-  const [todayAnimeList, setTodayAnimeList] = useState([]);
+  const [todayAnimeList, setTodayAnimeList] = useState<any[]>([]);
   const [loadingRandom, setLoadingRandom] = useState(false);
   const [loadingSchedule, setLoadingSchedule] = useState(true);
 
-  // 1. 룰렛 돌리기: 랜덤 애니메이션 하나 가져오기
-  const fetchRandomAnime = async () => {
+  // 1. 🛠️ API를 새로 쏘지 않고 받아온 리스트 배열 내에서 1개씩 꺼내 띄워주기
+  const fetchRandomAnime = () => {
+    if (todayAnimeList.length === 0) return;
+
     setLoadingRandom(true);
-    try {
-      const res = await fetch("https://api.jikan.moe/v4/anime");
-      const json = await res.json();
-      setRandomAnime(json.data);
-    } catch (error) {
-      console.error("랜덤 추천 실패:", error);
-    } finally {
+    // 의도적인 룰렛 로딩 효과 연출 (0.3초 뒤 무작위 선택)
+    setTimeout(() => {
+      const randomIndex = Math.floor(Math.random() * todayAnimeList.length);
+      setRandomAnime(todayAnimeList[randomIndex]);
       setLoadingRandom(false);
-    }
+    }, 300);
   };
 
   // 2. 현재 방영 중인 오늘 스케줄 리스트 가져오기
   useEffect(() => {
-    fetchRandomAnime(); // 진입 시 자동 1회 추천
+    // 🛠️ 맨 처음에는 미정으로 가기 위해 fetchRandomAnime() 자동 호출 제거
 
     async function fetchTodaySchedule() {
       setLoadingSchedule(true);
       try {
-        // 현재 시즌에 방영 중인 인기 작품 리스트업
         const res = await fetch("https://api.jikan.moe/v4/anime");
         const json = await res.json();
         setTodayAnimeList(json.data || []);
@@ -61,17 +59,23 @@ export default function RecommendPage() {
             <span>🔮</span> 다음 명작을 엄선하는 중...
           </div>
         ) : randomAnime ? (
+          /* 기존 UI 마크업 완벽 유지 */
           <div className={style.recommend_card}>
             <div className={style.rec_badge}>TODAY'S PICK</div>
             <div className={style.rec_body}>
               <div className={style.rec_left}>
                 <img
-                  src={randomAnime.images?.webp?.large_image_url}
+                  src={
+                    randomAnime.images?.webp?.large_image_url ||
+                    randomAnime.images?.jpg?.large_image_url
+                  }
                   alt={randomAnime.title}
                 />
               </div>
               <div className={style.rec_right}>
-                <span className={style.anime_type}>{randomAnime.type}</span>
+                <span className={style.anime_type}>
+                  {randomAnime.type || "TV"}
+                </span>
                 <h3 className={style.anime_title}>{randomAnime.title}</h3>
                 <div className={style.anime_meta}>
                   <span>
@@ -89,13 +93,44 @@ export default function RecommendPage() {
               </div>
             </div>
           </div>
-        ) : null}
+        ) : (
+          /* 🛠️ 맨 처음 미정일 때 뜨는 전용 UI (기존 마크업 형태와 스타일 틀을 동일하게 사용) */
+          <div
+            className={style.recommend_card}
+            style={{ border: "2px dashed #ccc", boxShadow: "none" }}
+          >
+            <div
+              className={style.rec_badge}
+              style={{ backgroundColor: "#888" }}
+            >
+              BEFORE ROLL
+            </div>
+            <div
+              className={style.rec_body}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "250px",
+                flexDirection: "column",
+              }}
+            >
+              <span style={{ fontSize: "50px", marginBottom: "10px" }}>❓</span>
+              <h3 className={style.anime_title} style={{ margin: 0 }}>
+                오늘의 추천 작품: 미정
+              </h3>
+              <p style={{ color: "#888", fontSize: "14px", marginTop: "5px" }}>
+                주목할 만한 신작 리스트에서 랜덤 명작 카드를 뒤집어보세요!
+              </p>
+            </div>
+          </div>
+        )}
 
         {/* 다시 돌리기 버튼 */}
         <button
           className={style.reroll_button}
           onClick={fetchRandomAnime}
-          disabled={loadingRandom}
+          disabled={loadingRandom || todayAnimeList.length === 0}
         >
           🎲 다른 작품 추천받기
         </button>
@@ -114,7 +149,10 @@ export default function RecommendPage() {
               <div key={anime.mal_id} className={style.anime_card}>
                 <div className={style.image_wrapper}>
                   <img
-                    src={anime.images?.webp?.large_image_url}
+                    src={
+                      anime.images?.webp?.large_image_url ||
+                      anime.images?.jpg?.large_image_url
+                    }
                     alt={anime.title}
                   />
                   {anime.score && (
@@ -126,7 +164,7 @@ export default function RecommendPage() {
                 <div className={style.anime_info}>
                   <h4 className={style.anime_name}>{anime.title}</h4>
                   <div className={style.meta_info}>
-                    <span>{anime.genres[0]?.name || "기타"}</span>
+                    <span>{anime.genres?.[0]?.name || "기타"}</span>
                     <span className={style.live_badge}>LIVE</span>
                   </div>
                 </div>

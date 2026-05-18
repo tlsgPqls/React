@@ -2,6 +2,7 @@ import style from "./page.module.css";
 import type SaleData from "@/types";
 import Image from "next/image";
 import { ENV } from "@/env";
+import AnimeDescription from "@/component/anime-description";
 // import sales from "@/mock/sales.json";
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -85,9 +86,10 @@ export default async function Page({ params }: PageProps) {
         <hr className={style.divider} />
 
         <h3>줄거리</h3>
-        <p className={style.description}>
+        {/* <p className={style.description}>
           {background || "등록된 상세 설명 텍스트가 없습니다."}
-        </p>
+        </p> */}
+        <AnimeDescription initialText={background} />
       </div>
     </div>
   );
