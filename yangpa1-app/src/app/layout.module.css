@@ -22,11 +22,58 @@
 }
 
 .header_content {
-  max-width: 1400px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 로고와 프로필이 양끝에 정렬됩니다 */
+  width: 100%;
+  max-width: 1200px; /* 본문 내용 폭에 맞춰 조절 가능 */
   margin: 0 auto;
-  padding: 18px 24px;
+  padding: 0 20px;
+}
+/* 유저 로그인/프로필 영역 정의 */
+.user_zone {
+  display: flex;
+  align-items: center;
 }
 
+/* 로그인 버튼 스타일링 */
+.login_btn {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  padding: 8px 16px;
+  background-color: #f1f3f5;
+  border-radius: 20px;
+  transition: background-color 0.2s;
+}
+
+.login_btn:hover {
+  background-color: #e9ecef;
+}
+
+/* 프로필 감싸는 영역 */
+.profile_wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* 사진과 이름 사이 공백 */
+  text-decoration: none;
+  color: #333;
+}
+
+/* 프로필 동그라미 처리 스타일 */
+.profile_image {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%; /* 이미지를 원형으로 깎아줍니다 */
+  object-fit: cover;
+  border: 2px solid #e0e0e0;
+}
+
+.username {
+  font-size: 14px;
+  font-weight: bold;
+}
 .title {
   font-size: 1.3rem;
   font-weight: 800;
@@ -49,6 +96,9 @@
 /* 중앙 메인 콘텐츠 카드 */
 .main_card {
   flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  max-width: 100%;
   background-color: #ffffff;
   padding: 28px;
   border-radius: 16px;
@@ -230,4 +280,26 @@
     border-color: rgba(255, 71, 87, 0.3);
     opacity: 0.85;
   }
+}
+/* layout.module.css 최하단에 추가하세요 */
+
+.profile_image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+/* 💡 사진에 마우스를 올리면 부드럽게 어두워지며 커집니다 */
+.profile_image:hover {
+  filter: brightness(0.8);
+  transform: scale(1.05);
+}
+
+.image_loading {
+  filter: brightness(0.5) blur(1px);
+  pointer-events: none; /* 업로드 중 연속 클릭 방지 */
 }

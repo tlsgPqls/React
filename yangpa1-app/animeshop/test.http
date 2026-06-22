@@ -1,0 +1,25 @@
+POST http://localhost:3001/worldcup
+Content-Type: application/json
+
+{
+  "title": "주술회전 최애캐 이상형 월드컵",
+  "desc": "당신의 최애 주술사는 누구인가요?",
+  "items": [
+    { "name": "고죠 사토루", "imageUrl": "https://d3mcojo3jv0dbr.cloudfront.net/2024/08/16/03/40/20d10517563942603921849992.jpg" },
+    { "name": "게토 스구루", "imageUrl": "https://image.zeta-ai.io/profile-image/a0efadb4-8dd1-4558-940e-0fed9bc81f74/66c5701d-442b-432d-af79-3563cb1b9cc6/079601a4-8881-414f-a1e6-ac988f2b89f5.jpeg?w=384&q=75&f=webp" },
+    { "name": "이타도리 유지", "imageUrl": "https://picsum.photos" },
+    { "name": "후시구로 메구미", "imageUrl": "https://picsum.photos" },
+    { "name": "쿠기사키 노바라", "imageUrl": "https://picsum.photos" },
+    { "name": "옷코츠 유타", "imageUrl": "https://picsum.photos" },
+    { "name": "나나미 켄토", "imageUrl": "https://picsum.photos" },
+    { "name": "이누마키 토게", "imageUrl": "https://picsum.photos" },
+    { "name": "젠인 마키", "imageUrl": "https://picsum.photos" },
+    { "name": "판다", "imageUrl": "https://picsum.photos" },
+    { "name": "토도 아오이", "imageUrl": "https://picsum.photos" },
+    { "name": "료멘 스쿠나", "imageUrl": "https://picsum.photos" },
+    { "name": "마히토", "imageUrl": "https://picsum.photos" },
+    { "name": "죠고", "imageUrl": "https://picsum.photos" },
+    { "name": "후시구로 토지", "imageUrl": "https://picsum.photos" },
+    { "name": "초소", "imageUrl": "https://picsum.photos" }
+  ]
+}

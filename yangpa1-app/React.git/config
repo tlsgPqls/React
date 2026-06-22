@@ -1,0 +1,12 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = true
+	ignorecase = true
+	precomposeunicode = true
+[remote "origin"]
+	url = https://github.com/tlsgPqls/React.git
+	tagOpt = --no-tags
+	fetch = +refs/*:refs/*
+	mirror = true
+	pushurl = https://github.com/tlsgPqls/fb_animestore.git

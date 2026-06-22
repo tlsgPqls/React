@@ -1,0 +1,109 @@
+.detail_container {
+  padding: 10px;
+}
+
+.back_btn {
+  background: none;
+  border: 1px solid #cbd5e0;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #4a5568;
+  margin-bottom: 20px;
+  transition: all 0.2s;
+}
+
+.back_btn:hover {
+  background-color: #edf2f7;
+  border-color: #a0aec0;
+}
+
+.content_box {
+  display: flex;
+  gap: 30px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 30px;
+}
+
+.poster_section {
+  flex-shrink: 0;
+  width: 220px;
+  height: 310px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.main_poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info_section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.anime_title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0;
+}
+
+.meta_info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #718096;
+}
+
+.tag_wrapper {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag_badge {
+  background-color: #ebf8ff;
+  color: #2b6cb0;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.description_box {
+  border-top: 1px solid #edf2f7;
+  padding-top: 20px;
+}
+
+.description_box h3 {
+  font-size: 16px;
+  color: #2d3748;
+  margin-bottom: 10px;
+}
+
+.description_box p {
+  font-size: 14px;
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+.loading {
+  text-align: center;
+  padding: 80px 0;
+  color: #718096;
+  font-size: 14px;
+}

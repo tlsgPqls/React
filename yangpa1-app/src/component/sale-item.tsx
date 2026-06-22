@@ -25,6 +25,7 @@ export default function SaleItem({
           alt="image"
           width={100}
           height={100}
+          loading="eager"
           className={style.image}
         />
         <div>

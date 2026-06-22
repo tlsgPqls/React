@@ -1,0 +1,131 @@
+.banner_container {
+  width: 100%;
+  margin: 20px 0 35px 0;
+  overflow: hidden;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px 0;
+  border: 1px solid #e2e8f0;
+}
+
+.banner_title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+/* 슬라이더 트랙 가로 마스크 설정 */
+.slider_track {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  /* 양 끝을 부드럽게 흐리게 만드는 그라데이션 효과 (라프텔 스타일) */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 10%,
+    #000 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 10%,
+    #000 90%,
+    transparent
+  );
+}
+
+/* 💡 무한 왼쪽 흐르기 핵심 애니메이션 기술 */
+.slider_animate {
+  display: flex;
+  gap: 20px;
+  padding: 5px 20px;
+  width: max-content;
+  animation: rollingLeft 25s linear infinite;
+}
+
+/* 마우스를 올리면 감상을 위해 롤링 속도가 부드럽게 멈춤 */
+.slider_animate:hover {
+  animation-play-state: paused;
+}
+
+@keyframes rollingLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* 카드 배열 절반 분량이 지나갔을 때 제자리 리셋하여 무한 공간 연출 */
+    transform: translateX(calc(-33.33% - 6.66px));
+  }
+}
+
+/* 개별 애니 카드 인테리어 */
+.anime_card {
+  width: 130px;
+  flex-shrink: 0;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease;
+}
+
+.image_wrapper {
+  position: relative;
+  width: 130px;
+  height: 185px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+}
+
+.poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.anime_title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4a5568;
+  margin-top: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* 글자가 길면 ... 처리 */
+  text-align: center;
+}
+
+/* 카드 호버 오버레이 */
+.hover_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.anime_card:hover .hover_overlay {
+  opacity: 1;
+}
+
+.anime_card:hover .anime_title {
+  color: #3182ce;
+}
+
+.view_btn {
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid white;
+  padding: 4px 8px;
+  border-radius: 4px;
+}

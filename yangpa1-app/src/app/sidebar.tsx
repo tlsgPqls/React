@@ -27,6 +27,12 @@ export default function Sidebar() {
         >
           ⭐ 내가 찜한 애니
         </Link>
+        <Link
+          href="/worldcup"
+          className={pathname === "/worldcup" ? style.active : ""}
+        >
+          😎 이상형 월드컵
+        </Link>
       </nav>
     </aside>
   );

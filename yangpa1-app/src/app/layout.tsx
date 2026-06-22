@@ -1,6 +1,10 @@
+// 💡 맨 위 "use client"를 삭제하고 순수한 서버 컴포넌트로 되돌립니다!
 import Link from "next/link";
 import style from "./layout.module.css";
+import Header from "./header"; // 💡 방금 분리한 헤더 컴포넌트 불러오기
 import Sidebar from "./sidebar";
+import TagBanner from "./components/tag-banner";
+
 export default function RootLayout({
   children,
 }: {
@@ -10,14 +14,8 @@ export default function RootLayout({
     <html lang="ko">
       <body className={style.body}>
         <div className={style.container}>
-          {/* 상단 네비게이션 헤더 */}
-          <header className={style.header}>
-            <div className={style.header_content}>
-              <Link href="/" className={style.title}>
-                🙈 애니대백과
-              </Link>
-            </div>
-          </header>
+          {/* 💡 분리된 헤더 배치 (이제 빈 페이지 현상이 해결됩니다) */}
+          <Header />
 
           {/* 3단 카드 레이아웃 본문 */}
           <div className={style.layout_body}>
@@ -33,7 +31,10 @@ export default function RootLayout({
             </aside>
 
             {/* [중앙 카드] 메인 콘텐츠 화면 */}
-            <main className={style.main_card}>{children}</main>
+            <main className={style.main_card}>
+              <TagBanner />
+              {children}
+            </main>
 
             {/* [오른쪽 카드] 유틸리티 및 실시간 정보 */}
             <aside className={`${style.card_popup} ${style.right_card}`}>
